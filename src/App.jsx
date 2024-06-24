@@ -3,10 +3,14 @@ import useInputs from "./hooks/useInputs";
 import axios from "axios";
 
 export default function App() {
-  const [form, onChange, reset] = useInputs({
-    username: "",
-    email: "",
-  });
+  const maxLength = (value) => value.length <= 10;
+  const [form, onChange, reset] = useInputs(
+    {
+      username: "",
+      email: "",
+    },
+    maxLength
+  );
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post("http://localhost:3001/memo", form);
