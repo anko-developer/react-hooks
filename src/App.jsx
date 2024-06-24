@@ -1,42 +1,28 @@
 import React from "react";
-import useInputs from "./hooks/useInputs";
-import axios from "axios";
+import useTabs from "./hooks/useTabs";
+
+const content = [
+  {
+    tab: "Section 1",
+    content: "I'm the content of the Section 1",
+  },
+  {
+    tab: "Section 2",
+    content: "I'm the content of the Section 2",
+  },
+];
 
 export default function App() {
-  const maxLength = (value) => value.length <= 10;
-  const [form, onChange, reset] = useInputs(
-    {
-      username: "",
-      email: "",
-    },
-    maxLength
-  );
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post("http://localhost:3001/memo", form);
-  };
-
+  const { changeItem, currentItem } = useTabs(0, content);
   return (
     <>
       <div>Custom Hook</div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          name="username"
-          onChange={onChange}
-          value={form.value}
-        />
-        <input
-          type="text"
-          placeholder="Email"
-          name="email"
-          onChange={onChange}
-          value={form.value}
-        />
-        <button>확인</button>
-        <button onClick={reset}>Reset</button>
-      </form>
+      {content.map((section, index) => (
+        <button onClick={() => changeItem(index)} key={section.tab}>
+          {section.tab}
+        </button>
+      ))}
+      <div>{currentItem.content}</div>
     </>
   );
 }
