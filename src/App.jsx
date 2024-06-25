@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import useTabs from "./hooks/useTabs";
 
 const content = [
@@ -16,6 +17,7 @@ export default function App() {
   const { changeItem, currentItem } = useTabs(0, content);
   return (
     <>
+      <Outlet />
       <div>Custom Hook</div>
       {content.map((section, index) => (
         <button onClick={() => changeItem(index)} key={section.tab}>

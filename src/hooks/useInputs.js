@@ -6,6 +6,7 @@ export default function useInputs(initialForm) {
   // change
   const onChange = useCallback((e) => {
     const { value, name } = e.target;
+
     setForm((form) => ({ ...form, [name]: value }));
   }, []);
   const reset = useCallback(() => setForm(initialForm), [initialForm]);
