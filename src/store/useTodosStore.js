@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import axios from "axios";
 import MemoApi from "../api/memoApi";
 
 const memoApi = new MemoApi();
@@ -19,10 +18,18 @@ const store = (set) => ({
   },
   addTodo: (todo) =>
     set(async () => {
-      await axios.post("http://localhost:3001/todo", {
+      await memoApi.createMemo({
         ...todo,
       });
+      // await axios.post("http://localhost:3001/todo", {
+      //   ...todo,
+      // });
     }),
+  deleteTodo: (id) => {
+    set(async () => {
+      await memoApi.deleteMemo(id);
+    });
+  },
 });
 
 const useTodosStore = create(devtools(store));
