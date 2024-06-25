@@ -4,10 +4,14 @@ import Todo from "../components/Todo/Todo";
 import useTodosStore from "../store/useTodosStore";
 
 export default function TodoPage() {
-  const { todos, addTodo, fetch } = useTodosStore();
+  const { todos, addTodo, deleteTodo, fetch } = useTodosStore();
 
   const handleClick = (form) => {
     addTodo(form);
+  };
+
+  const handleDelete = (id) => {
+    deleteTodo(id);
   };
 
   useEffect(() => {
@@ -16,9 +20,8 @@ export default function TodoPage() {
 
   return (
     <>
-      {todos && todos.map((todo) => <div key={todo.id}>{todo.memo}</div>)}
       <AddTodo onClick={handleClick} />
-      <Todo todos={todos} />
+      <Todo todos={todos} onDelete={handleDelete} />
     </>
   );
 }
