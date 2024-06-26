@@ -16,7 +16,7 @@ export default function TodoPage() {
 
   useEffect(() => {
     fetch();
-  }, [todos]);
+  }, []);
 
   return (
     <>
