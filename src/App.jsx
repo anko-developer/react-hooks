@@ -9,6 +9,7 @@ import useConfirm from "./hooks/useConfirm";
 import usePreventLeave from "./hooks/usePreventLeave";
 import useBeforeLeave from "./hooks/useBeforeLeave";
 import useFadeIn from "./hooks/useFadeIn";
+import useNetwork from "./hooks/useNetwork";
 
 const content = [
   {
@@ -43,6 +44,11 @@ export default function App() {
 
   const fadeInBox = useFadeIn(3);
   const fadeInH1 = useFadeIn(5);
+
+  const handleNetworkChange = (online) => {
+    console.log(online ? "We just went online" : "We are offline");
+  };
+  const onLine = useNetwork(handleNetworkChange);
   return (
     <div>
       <Suspense
@@ -56,6 +62,7 @@ export default function App() {
         }
       >
         <Outlet />
+        <h1>{onLine ? "Online" : "Offline"}</h1>
         <h1 {...fadeInH1} className="bg-[purple]">
           Fade Test1
         </h1>
