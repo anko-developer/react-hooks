@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 
 const useFadeIn = (duration = 0, delay = 100) => {
   const ref = useRef();
-  console.log("ref", ref);
   useEffect(() => {
     setTimeout(() => {
       const element = ref;
