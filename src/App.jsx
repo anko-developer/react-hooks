@@ -8,6 +8,7 @@ import useHover from "./hooks/useHover";
 import useConfirm from "./hooks/useConfirm";
 import usePreventLeave from "./hooks/usePreventLeave";
 import useBeforeLeave from "./hooks/useBeforeLeave";
+import useFadeIn from "./hooks/useFadeIn";
 
 const content = [
   {
@@ -39,6 +40,9 @@ export default function App() {
 
   const begForLife = () => console.log("Please!");
   useBeforeLeave(begForLife);
+
+  const fadeInBox = useFadeIn(3);
+  const fadeInH1 = useFadeIn(5);
   return (
     <div>
       <Suspense
@@ -52,6 +56,12 @@ export default function App() {
         }
       >
         <Outlet />
+        <h1 {...fadeInH1} className="bg-[purple]">
+          Fade Test1
+        </h1>
+        <div {...fadeInBox} className="bg-[green]">
+          Fade Test2
+        </div>
         <h2 ref={test} className="bg-[blue]">
           TEST !!!!
         </h2>
