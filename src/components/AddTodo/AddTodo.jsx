@@ -9,9 +9,20 @@ export default function AddTodo({ onClick }) {
   };
 
   return (
-    <header>
-      <input type="text" name="memo" value={form.value} onChange={onChange} />
-      <button onClick={handleClick}>메모 추가</button>
+    <header className="flex gap-[10px] p-2 bg-[skyblue]">
+      <input
+        type="text"
+        name="memo"
+        value={form.value}
+        onChange={onChange}
+        className="border"
+      />
+      <button
+        onClick={handleClick}
+        className="bg-black text-white px-2 py-1 text-xs"
+      >
+        메모 추가
+      </button>
     </header>
   );
 }

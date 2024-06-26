@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TodoPage from "./pages/TodoPage.jsx";
-import NotFound from "./pages/NotFound.jsx";
+
+const TodoPage = React.lazy(() => import("./pages/TodoPage.jsx"));
+const NotFound = React.lazy(() => import("./pages/NotFound.jsx"));
 
 const router = createBrowserRouter([
   {
