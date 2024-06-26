@@ -1,11 +1,9 @@
 import { useEffect, useRef } from "react";
 
 const useHover = (onHover) => {
-  const element = useRef();
+  const ref = useRef();
   useEffect(() => {
-    if (typeof onHover !== "function") {
-      return;
-    }
+    const element = ref;
 
     // componentDidMount 되었을 때 event 추가
     if (element.current) {
@@ -20,7 +18,11 @@ const useHover = (onHover) => {
       }
     };
   }, [onHover]);
-  return typeof onHover !== "function" ? undefined : element;
+
+  if (typeof onHover !== "function") {
+    return;
+  }
+  return ref;
 };
 
 export default useHover;

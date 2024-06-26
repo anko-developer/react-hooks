@@ -1,11 +1,9 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const useClick = (onClick) => {
-  const element = useRef();
+  const ref = useRef();
   useEffect(() => {
-    if (typeof onClick !== "function") {
-      return;
-    }
+    const element = ref;
 
     // componentDidMount 되었을 때 event 추가
     if (element.current) {
@@ -20,7 +18,11 @@ const useClick = (onClick) => {
       }
     };
   }, [onClick]);
-  return typeof onClick !== "function" ? undefined : element;
+
+  if (typeof onClick !== "function") {
+    return;
+  }
+  return ref;
 };
 
 export default useClick;
