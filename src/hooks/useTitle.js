@@ -12,6 +12,7 @@ const useTitle = (initialTitle) => {
 
 export default useTitle;
 
+// 실행
 // const titleUpdater = useTitle("Loading...");
 // setTimeout(() => {
 //   titleUpdater("Home!");
