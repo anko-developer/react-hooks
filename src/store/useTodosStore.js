@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import MemoApi from "../api/memoApi";
+import MemoApi from "../service/memoApi";
 
 const memoApi = new MemoApi();
 
