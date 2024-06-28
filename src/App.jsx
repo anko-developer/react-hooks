@@ -11,6 +11,7 @@ import useBeforeLeave from "./hooks/useBeforeLeave";
 import useFadeIn from "./hooks/useFadeIn";
 import useNetwork from "./hooks/useNetwork";
 import useScroll from "./hooks/useScroll";
+import useFullScreen from "./hooks/useFullScreen";
 
 const content = [
   {
@@ -52,6 +53,11 @@ export default function App() {
   const onLine = useNetwork(handleNetworkChange);
 
   const { y } = useScroll();
+
+  const onFullS = (isFull) => {
+    console.log(isFull ? "We are full!" : "WE are small!");
+  };
+  const { element, triggerFull, exitFull } = useFullScreen(onFullS);
   return (
     <div>
       <Suspense
@@ -73,6 +79,19 @@ export default function App() {
             backgroundColor: "white",
           }}
         >
+          <div ref={element}>
+            <img
+              src="https://picsum.photos/200"
+              alt="Hook Test Image"
+              className="max-w-full"
+            />
+            <button onClick={exitFull} className="bg-black text-white p-1">
+              Exit FullScreen
+            </button>
+          </div>
+          <button onClick={triggerFull} className="bg-black text-white p-1">
+            Make FullScreen
+          </button>
           Hi
         </h1>
         <h1>{onLine ? "Online" : "Offline"}</h1>
