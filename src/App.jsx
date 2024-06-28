@@ -10,6 +10,7 @@ import usePreventLeave from "./hooks/usePreventLeave";
 import useBeforeLeave from "./hooks/useBeforeLeave";
 import useFadeIn from "./hooks/useFadeIn";
 import useNetwork from "./hooks/useNetwork";
+import useScroll from "./hooks/useScroll";
 
 const content = [
   {
@@ -49,6 +50,8 @@ export default function App() {
     console.log(online ? "We just went online" : "We are offline");
   };
   const onLine = useNetwork(handleNetworkChange);
+
+  const { y } = useScroll();
   return (
     <div>
       <Suspense
@@ -62,6 +65,16 @@ export default function App() {
         }
       >
         <Outlet />
+
+        <h1
+          style={{
+            color: y > 100 ? "red" : "blue",
+            height: "1000vh",
+            backgroundColor: "white",
+          }}
+        >
+          Hi
+        </h1>
         <h1>{onLine ? "Online" : "Offline"}</h1>
         <h1 {...fadeInH1} className="bg-[purple]">
           Fade Test1
