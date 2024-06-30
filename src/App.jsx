@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { FallingLines } from "react-loader-spinner";
 import useTabs from "./hooks/useTabs";
